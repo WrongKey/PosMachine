@@ -1,35 +1,36 @@
 package com.thoughtworks.pos;
 
-import com.thoughtworks.pos.Result.Record;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public final class PosMachine {
-    private final Map<String, Integer> allGoods;
+    private final List<Item> allItems;
 
-    public PosMachine(Map<String, Integer> allGoods) {
-        this.allGoods = allGoods;
+    public PosMachine(List<Item> allItems) {
+        this.allItems = allItems;
     }
 
-    public Result calculate(List<Item> items) {
-        List<Record> resultRecords = new ArrayList<Record>();
-        for (Item item : items) {
-            validateItem(item);
-            int price = allGoods.get(item.getBarcode());
-            resultRecords.add(new Record(item, price, price * item.getAmount()));
+    public double calculate(List<CartItem> cartItems) {
+        double total = 0;
+        for (CartItem cartItem : cartItems) {
+            String barcode = cartItem.getItem().getBarcode();
+            cartItem.initPrice(queryItemPrice(barcode));
+            cartItem.applyPromotions(getAvailablePromotions(barcode));
+            total += cartItem.getQuantity() * cartItem.getPromotionPrice();
         }
-        return new Result(resultRecords);
+        return total;
     }
 
-    private void validateItem(Item item) {
-        if (!allGoods.containsKey(item.getBarcode())) {
-            throw new IllegalArgumentException("invalid barcode");
+    private double queryItemPrice(String barcode) {
+        for (Item item : allItems) {
+            if (item.getBarcode().equals(barcode)){
+                return item.getPrice();
+            }
         }
 
-        if (item.getAmount() <= 0) {
-            throw new IllegalArgumentException("invalid amount");
-        }
+        throw new IllegalArgumentException("unknown item");
+    }
+
+    private List<PromotionStrategy> getAvailablePromotions(String barcode) {
+        return null;
     }
 }

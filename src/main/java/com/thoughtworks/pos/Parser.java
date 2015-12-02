@@ -1,21 +1,17 @@
 package com.thoughtworks.pos;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 
-import static java.lang.Integer.parseInt;
-
-public abstract class Parser {
-    public Map<String, Integer> parse(List<String> input) {
-        HashMap<String, Integer> cartItems = new HashMap<>();
+public abstract class Parser<T> {
+    public List<T> parse(List<String> input) {
+        List<T> list = new ArrayList<>();
         for (String line : input) {
             validateInput(line);
-            String[] splitInput = parseLine(line);
-            cartItems.put(splitInput[0], parseInt(splitInput[1]));
+            list.add(parseLine(line));
         }
-        return cartItems;
+        return list;
     }
 
     private void validateInput(String line) {
@@ -24,11 +20,7 @@ public abstract class Parser {
         }
     }
 
-    private String[] parseLine(String line) {
-        return line.split(getSeparator());
-    }
-
-    protected abstract String getSeparator();
+    protected abstract T parseLine(String line);
 
     protected abstract Pattern getPattern() ;
 

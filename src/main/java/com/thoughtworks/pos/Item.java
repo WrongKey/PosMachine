@@ -2,38 +2,31 @@ package com.thoughtworks.pos;
 
 public final class Item {
     private final String barcode;
-    private final int amount;
+    private double price;
 
-    public Item(String barcode, int amount) {
+    private Item(String barcode, double price) {
         this.barcode = barcode;
-        this.amount = amount;
+        this.price = price;
+    }
+
+    public Item setPrice(double price) {
+        this.price = price;
+        return this;
     }
 
     public String getBarcode() {
         return barcode;
     }
 
-    public int getAmount() {
-        return amount;
+    public double getPrice() {
+        return price;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Item)) return false;
-
-        Item item = (Item) o;
-
-        if (amount != item.amount) return false;
-        if (barcode != null ? !barcode.equals(item.barcode) : item.barcode != null) return false;
-
-        return true;
+    public static Item createItemWithoutPrice(String barcode) {
+        return new Item(barcode,0);
     }
 
-    @Override
-    public int hashCode() {
-        int result = barcode != null ? barcode.hashCode() : 0;
-        result = 31 * result + amount;
-        return result;
+    public static Item createItem(String barcode, double price) {
+        return new Item(barcode, price);
     }
 }

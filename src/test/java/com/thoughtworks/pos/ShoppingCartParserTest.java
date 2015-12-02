@@ -4,8 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -20,26 +19,28 @@ public class ShoppingCartParserTest {
 
     @Test
     public void should_get_empty_when_given_none() {
-        Map<String, Integer> cartItems = parser.parse(Arrays.<String>asList());
-        Map<String, Integer> expectedCartItems = new HashMap<String, Integer>();
-        assertThat(cartItems, is(expectedCartItems));
+        List<CartItem> cartItems = parser.parse(Arrays.<String>asList());
+        List<CartItem> expectCartItems = Arrays.<CartItem>asList();
+        assertThat(cartItems, is(expectCartItems));
     }
 
     @Test
     public void should_get_1_cart_item() {
-        Map<String, Integer> cartItems = parser.parse(Arrays.asList("I1-2"));
-        Map<String, Integer> expectedCartItems = new HashMap<String, Integer>();
-        expectedCartItems.put("I1", 2);
-        assertThat(cartItems, is(expectedCartItems));
+        List<CartItem> cartItems = parser.parse(Arrays.asList("I1-2"));
+
+        assertThat(cartItems.size(), is(1));
+        assertThat(cartItems.get(0).getItem().getBarcode(), is("I1"));
+        assertThat(cartItems.get(0).getQuantity(), is(2));
     }
 
     @Test
     public void should_get_2_cart_item() {
-        Map<String, Integer> cartItems = parser.parse(Arrays.asList("I1-2", "I2-3"));
-        Map<String, Integer> expectedCartItems = new HashMap<String, Integer>();
-        expectedCartItems.put("I1", 2);
-        expectedCartItems.put("I2", 3);
-        assertThat(cartItems, is(expectedCartItems));
+        List<CartItem> cartItems = parser.parse(Arrays.asList("I1-2", "I2-3"));
+        assertThat(cartItems.size(), is(2));
+        assertThat(cartItems.get(0).getItem().getBarcode(), is("I1"));
+        assertThat(cartItems.get(1).getItem().getBarcode(), is("I2"));
+        assertThat(cartItems.get(0).getQuantity(), is(2));
+        assertThat(cartItems.get(1).getQuantity(), is(3));
     }
 
     @Test(expected = IllegalArgumentException.class)
