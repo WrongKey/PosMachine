@@ -2,10 +2,10 @@ package com.thoughtworks.pos;
 
 import java.util.Map;
 
-public class ReduceXuponYStrategy implements PromotionStrategy {
+public class ReduceXUponYStrategy implements PromotionStrategy {
     private final Map<String, Rule<Integer, Integer>> reduceRuleMap;
 
-    public ReduceXuponYStrategy(Map<String, Rule<Integer, Integer>> reduceRuleMap) {
+    public ReduceXUponYStrategy(Map<String, Rule<Integer, Integer>> reduceRuleMap) {
         this.reduceRuleMap = reduceRuleMap;
     }
 

@@ -18,7 +18,7 @@ public final class Data {
 
     public static final Map<String, Integer> ITEM_DISCOUNT_MAP = new HashMap<>();
 
-    public static final Map<String, ReduceXuponYStrategy.Rule<Integer, Integer>> REDUCE_X_UPON_Y_MAP = new HashMap<>();
+    public static final Map<String, ReduceXUponYStrategy.Rule<Integer, Integer>> REDUCE_X_UPON_Y_MAP = new HashMap<>();
 
 
 
@@ -26,7 +26,7 @@ public final class Data {
         ITEM_DISCOUNT_MAP.put("ITEM000001", 75);
         ITEM_DISCOUNT_MAP.put("ITEM000005", 90);
 
-        REDUCE_X_UPON_Y_MAP.put("ITEM000003", new ReduceXuponYStrategy.Rule<>(100,10));
-        REDUCE_X_UPON_Y_MAP.put("ITEM000003", new ReduceXuponYStrategy.Rule<>(300,50));
+        REDUCE_X_UPON_Y_MAP.put("ITEM000003", new ReduceXUponYStrategy.Rule<>(100,10));
+        REDUCE_X_UPON_Y_MAP.put("ITEM000003", new ReduceXUponYStrategy.Rule<>(300,50));
     }
 }

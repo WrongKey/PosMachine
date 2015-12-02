@@ -1,12 +1,17 @@
 package com.thoughtworks.pos;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public final class PosMachine {
+    private static final List<PromotionStrategy> EMPTY_LIST = new ArrayList<>();
     private final List<Item> allItems;
+    private final Map<String, List<PromotionStrategy>> allPromotions;
 
-    public PosMachine(List<Item> allItems) {
+    public PosMachine(List<Item> allItems, Map<String, List<PromotionStrategy>> allPromotions) {
         this.allItems = allItems;
+        this.allPromotions = allPromotions;
     }
 
     public double calculate(List<CartItem> cartItems) {
@@ -31,6 +36,7 @@ public final class PosMachine {
     }
 
     private List<PromotionStrategy> getAvailablePromotions(String barcode) {
-        return null;
+        List<PromotionStrategy> availablePromotions = allPromotions.get(barcode);
+        return availablePromotions == null ? EMPTY_LIST : availablePromotions;
     }
 }
