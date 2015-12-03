@@ -38,7 +38,7 @@ public final class CartItem {
         Comparator<PromotionStrategy> promotionStrategyComparator = new Comparator<PromotionStrategy>() {
             @Override
             public int compare(PromotionStrategy ps1, PromotionStrategy ps2) {
-                return ps1.priority() - ps2.priority();
+                return ps2.priority() - ps1.priority();
             }
         };
 
