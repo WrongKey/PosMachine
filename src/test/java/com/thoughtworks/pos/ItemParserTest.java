@@ -28,12 +28,12 @@ public class ItemParserTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void should_fail_given_invalid_input() {
+    public void should_complain_invalid_input() {
         parser.parse(asList("blabla"));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void should_fail_given_invalid_price() {
+    public void should_complain_invalid_price() {
         parser.parse(asList("blabla:d8"));
     }
 
