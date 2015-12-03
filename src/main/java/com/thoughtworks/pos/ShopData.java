@@ -1,5 +1,7 @@
 package com.thoughtworks.pos;
 
+import com.thoughtworks.pos.strategy.ReduceXUponYStrategy;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

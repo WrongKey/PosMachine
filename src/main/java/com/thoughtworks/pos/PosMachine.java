@@ -1,5 +1,7 @@
 package com.thoughtworks.pos;
 
+import com.thoughtworks.pos.strategy.PromotionStrategy;
+
 import java.util.*;
 
 public final class PosMachine {

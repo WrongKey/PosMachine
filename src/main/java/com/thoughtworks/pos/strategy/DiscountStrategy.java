@@ -1,4 +1,6 @@
-package com.thoughtworks.pos;
+package com.thoughtworks.pos.strategy;
+
+import com.thoughtworks.pos.CartItem;
 
 public class DiscountStrategy implements PromotionStrategy {
     private final Integer discountRatio;

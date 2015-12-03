@@ -1,4 +1,6 @@
-package com.thoughtworks.pos;
+package com.thoughtworks.pos.strategy;
+
+import com.thoughtworks.pos.CartItem;
 
 public class SecondHalfStrategy implements PromotionStrategy {
     @Override
