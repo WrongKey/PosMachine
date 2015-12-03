@@ -4,7 +4,7 @@ public final class Item {
     private final String barcode;
     private double price;
 
-    private Item(String barcode, double price) {
+    public Item(String barcode, double price) {
         this.barcode = barcode;
         this.price = price;
     }
@@ -20,13 +20,5 @@ public final class Item {
 
     public double getPrice() {
         return price;
-    }
-
-    public static Item createItemWithoutPrice(String barcode) {
-        return new Item(barcode,0);
-    }
-
-    public static Item createItem(String barcode, double price) {
-        return new Item(barcode, price);
     }
 }

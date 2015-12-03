@@ -11,7 +11,7 @@ public class ItemParser extends Parser<Item> {
     protected Item parseLine(String line) {
         String barcode = line.split(":")[0];
         double price = Double.parseDouble(line.split(":")[1]);
-        return Item.createItem(barcode, price);
+        return new Item(barcode, price);
     }
 
     @Override

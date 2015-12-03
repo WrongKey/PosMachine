@@ -1,20 +1,17 @@
 package com.thoughtworks.pos;
 
-import java.util.Map;
-
 public class ReduceXUponYStrategy implements PromotionStrategy {
-    private final Map<String, Rule<Integer, Integer>> reduceRuleMap;
+    private final Rule<Integer, Integer> reduceRule;
 
-    public ReduceXUponYStrategy(Map<String, Rule<Integer, Integer>> reduceRuleMap) {
-        this.reduceRuleMap = reduceRuleMap;
+    public ReduceXUponYStrategy(Rule<Integer, Integer> reduceRule) {
+        this.reduceRule = reduceRule;
     }
 
     @Override
     public CartItem apply(CartItem cartItem) {
         double originSubtotal = cartItem.subtotal();
-        Rule<Integer, Integer> rule = reduceRuleMap.get(cartItem.getBarcode());
-        double discountTimes = ((int)originSubtotal) / rule.lowerBound;
-        double currentPromotionPrice = (originSubtotal - discountTimes * rule.discount) / cartItem.getQuantity();
+        double discountTimes = ((int)originSubtotal) / this.reduceRule.lowerBound;
+        double currentPromotionPrice = (originSubtotal - discountTimes * this.reduceRule.discount) / cartItem.getQuantity();
         cartItem.setCurrentPrice(currentPromotionPrice);
         return cartItem;
     }

@@ -1,19 +1,16 @@
 package com.thoughtworks.pos;
 
-import java.util.Map;
-
 public class DiscountStrategy implements PromotionStrategy {
-    private final Map<String, Integer> itemDiscountMap;
+    private final Integer discountRatio;
 
-    public DiscountStrategy(Map<String, Integer> itemDiscountMap) {
-        this.itemDiscountMap = itemDiscountMap;
+    public DiscountStrategy(Integer discountRatio) {
+        this.discountRatio = discountRatio;
     }
 
     @Override
     public CartItem apply(CartItem cartItem) {
         final double currentPrice = cartItem.getCurrentPrice();
-        final String barcode = cartItem.getBarcode();
-        cartItem.setCurrentPrice(currentPrice * itemDiscountMap.get(barcode));
+        cartItem.setCurrentPrice(currentPrice * discountRatio);
         return cartItem;
     }
 }
