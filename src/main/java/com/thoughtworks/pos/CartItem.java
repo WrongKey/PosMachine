@@ -2,10 +2,7 @@ package com.thoughtworks.pos;
 
 import com.thoughtworks.pos.strategy.PromotionStrategy;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public final class CartItem {
     private final String barcode;
@@ -45,7 +42,7 @@ public final class CartItem {
             }
         };
 
-        promotionStrategies.sort(promotionStrategyComparator);
+        Collections.sort(promotionStrategies,promotionStrategyComparator);
         for (PromotionStrategy promotionStrategy : promotionStrategies) {
             promotionStrategy.apply(this);
         }
