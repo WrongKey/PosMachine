@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class Data {
+public final class ShopData {
 
     public static final List<String> ITEMS_DATA =
             Arrays.asList("ITEM000001:40", "ITEM000003:50", "ITEM000005:60");

@@ -6,8 +6,8 @@ import java.util.Map;
 
 public final class PosMachine {
     private static final List<PromotionStrategy> EMPTY_LIST = new ArrayList<>();
-    private final List<Item> allItems;
     private final Map<String, List<PromotionStrategy>> allPromotions;
+    private final List<Item> allItems;
 
     public PosMachine(List<Item> allItems, Map<String, List<PromotionStrategy>> allPromotions) {
         this.allItems = allItems;

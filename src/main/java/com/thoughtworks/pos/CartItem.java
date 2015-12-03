@@ -28,13 +28,13 @@ public final class CartItem {
         this.currentPrice = currentPrice;
     }
 
+    public final double subtotal() {
+        return getQuantity() * getCurrentPrice();
+    }
+
     public void applyPromotions(List<PromotionStrategy> promotionStrategies) {
         for (PromotionStrategy promotionStrategy : promotionStrategies) {
             promotionStrategy.apply(this);
         }
-    }
-
-    double subtotal() {
-        return getQuantity() * getCurrentPrice();
     }
 }
