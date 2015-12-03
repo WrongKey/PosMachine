@@ -1,6 +1,5 @@
 package com.thoughtworks.pos;
 
-import java.util.Comparator;
 
 public class ReduceXUponYStrategy implements PromotionStrategy{
     private final Rule<Integer, Integer> reduceRule;
