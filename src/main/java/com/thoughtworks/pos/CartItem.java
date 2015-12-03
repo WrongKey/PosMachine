@@ -3,6 +3,7 @@ package com.thoughtworks.pos;
 import com.thoughtworks.pos.strategy.PromotionStrategy;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -36,7 +37,7 @@ public final class CartItem {
         return getQuantity() * getCurrentPrice();
     }
 
-    public void applyPromotions(Set<PromotionStrategy> promotionStrategies) {
+    public void applyPromotions(List<PromotionStrategy> promotionStrategies) {
         Comparator<PromotionStrategy> promotionStrategyComparator = new Comparator<PromotionStrategy>() {
             @Override
             public int compare(PromotionStrategy ps1, PromotionStrategy ps2) {
@@ -44,9 +45,8 @@ public final class CartItem {
             }
         };
 
-        TreeSet<PromotionStrategy> sortedPromotionStrategies = new TreeSet<>(promotionStrategyComparator);
-        sortedPromotionStrategies.addAll(promotionStrategies);
-        for (PromotionStrategy promotionStrategy : sortedPromotionStrategies) {
+        promotionStrategies.sort(promotionStrategyComparator);
+        for (PromotionStrategy promotionStrategy : promotionStrategies) {
             promotionStrategy.apply(this);
         }
     }

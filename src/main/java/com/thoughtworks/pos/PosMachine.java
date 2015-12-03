@@ -5,11 +5,11 @@ import com.thoughtworks.pos.strategy.PromotionStrategy;
 import java.util.*;
 
 public final class PosMachine {
-    private static final Set<PromotionStrategy> EMPTY = new TreeSet<>();
-    private final Map<String, Set<PromotionStrategy>> allPromotions;
+    private static final List<PromotionStrategy> EMPTY = new ArrayList<>();
+    private final Map<String, List<PromotionStrategy>> allPromotions;
     private final List<Item> allItems;
 
-    public PosMachine(List<Item> allItems, Map<String, Set<PromotionStrategy>> allPromotions) {
+    public PosMachine(List<Item> allItems, Map<String, List<PromotionStrategy>> allPromotions) {
         this.allItems = allItems;
         this.allPromotions = allPromotions;
     }
@@ -34,8 +34,8 @@ public final class PosMachine {
         throw new IllegalArgumentException("unknown item");
     }
 
-    private Set<PromotionStrategy> getAvailablePromotions(String barcode) {
-        Set<PromotionStrategy> availablePromotions = allPromotions.get(barcode);
+    private List<PromotionStrategy> getAvailablePromotions(String barcode) {
+        List<PromotionStrategy> availablePromotions = allPromotions.get(barcode);
         return availablePromotions == null ? EMPTY : availablePromotions;
     }
 }

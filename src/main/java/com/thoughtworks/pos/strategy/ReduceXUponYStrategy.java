@@ -6,8 +6,8 @@ import com.thoughtworks.pos.CartItem;
 public class ReduceXUponYStrategy implements PromotionStrategy{
     private final Rule<Integer, Integer> reduceRule;
 
-    public ReduceXUponYStrategy(Rule<Integer, Integer> reduceRule) {
-        this.reduceRule = reduceRule;
+    public ReduceXUponYStrategy(Integer lowerBound, Integer discount) {
+        this.reduceRule = new Rule<>(lowerBound,discount);
     }
 
     @Override
