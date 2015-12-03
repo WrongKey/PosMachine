@@ -13,4 +13,9 @@ public class DiscountStrategy implements PromotionStrategy {
         cartItem.setCurrentPrice(currentPrice * discountRatio);
         return cartItem;
     }
+
+    @Override
+    public Integer priority() {
+        return 2;
+    }
 }

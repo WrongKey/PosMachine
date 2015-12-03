@@ -10,4 +10,9 @@ public class SecondHalfStrategy implements PromotionStrategy {
         cartItem.setCurrentPrice(promotionPrice);
         return cartItem;
     }
+
+    @Override
+    public Integer priority() {
+        return 1;
+    }
 }

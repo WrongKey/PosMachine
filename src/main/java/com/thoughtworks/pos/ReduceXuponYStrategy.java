@@ -1,6 +1,8 @@
 package com.thoughtworks.pos;
 
-public class ReduceXUponYStrategy implements PromotionStrategy {
+import java.util.Comparator;
+
+public class ReduceXUponYStrategy implements PromotionStrategy{
     private final Rule<Integer, Integer> reduceRule;
 
     public ReduceXUponYStrategy(Rule<Integer, Integer> reduceRule) {
@@ -14,6 +16,11 @@ public class ReduceXUponYStrategy implements PromotionStrategy {
         double currentPromotionPrice = (originSubtotal - discountTimes * this.reduceRule.discount) / cartItem.getQuantity();
         cartItem.setCurrentPrice(currentPromotionPrice);
         return cartItem;
+    }
+
+    @Override
+    public Integer priority() {
+        return 0;
     }
 
     public static final class Rule<L,R> {
