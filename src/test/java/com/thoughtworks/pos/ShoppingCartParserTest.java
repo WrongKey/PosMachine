@@ -29,7 +29,7 @@ public class ShoppingCartParserTest {
         List<CartItem> cartItems = parser.parse(Arrays.asList("I1-2"));
 
         assertThat(cartItems.size(), is(1));
-        assertThat(cartItems.get(0).getItem().getBarcode(), is("I1"));
+        assertThat(cartItems.get(0).getBarcode().getBarcode(), is("I1"));
         assertThat(cartItems.get(0).getQuantity(), is(2));
     }
 
@@ -37,8 +37,8 @@ public class ShoppingCartParserTest {
     public void should_get_2_cart_item() {
         List<CartItem> cartItems = parser.parse(Arrays.asList("I1-2", "I2-3"));
         assertThat(cartItems.size(), is(2));
-        assertThat(cartItems.get(0).getItem().getBarcode(), is("I1"));
-        assertThat(cartItems.get(1).getItem().getBarcode(), is("I2"));
+        assertThat(cartItems.get(0).getBarcode().getBarcode(), is("I1"));
+        assertThat(cartItems.get(1).getBarcode().getBarcode(), is("I2"));
         assertThat(cartItems.get(0).getQuantity(), is(2));
         assertThat(cartItems.get(1).getQuantity(), is(3));
     }

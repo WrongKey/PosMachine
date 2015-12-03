@@ -3,29 +3,29 @@ package com.thoughtworks.pos;
 import java.util.List;
 
 public final class CartItem {
-    private final Item item;
+    private final String barcode;
     private Integer quantity;
-    private double promotionPrice;
+    private double currentPrice;
 
-    public CartItem(Item item, Integer quantity) {
-        this.item = item;
+    public CartItem(String barcode, Integer quantity) {
+        this.barcode = barcode;
         this.quantity = quantity;
     }
 
-    public Item getItem() {
-        return item;
+    public String getBarcode() {
+        return barcode;
     }
 
     public Integer getQuantity() {
         return quantity;
     }
 
-    public double getPromotionPrice() {
-        return promotionPrice;
+    public double getCurrentPrice() {
+        return currentPrice;
     }
 
-    public void setPromotionPrice(double promotionPrice) {
-        this.promotionPrice = promotionPrice;
+    public void setCurrentPrice(double currentPrice) {
+        this.currentPrice = currentPrice;
     }
 
     public void applyPromotions(List<PromotionStrategy> promotionStrategies) {
@@ -34,8 +34,7 @@ public final class CartItem {
         }
     }
 
-    public void initPrice(double price) {
-        this.item.setPrice(price);
-        this.promotionPrice = price;
+    double subtotal() {
+        return getQuantity() * getCurrentPrice();
     }
 }

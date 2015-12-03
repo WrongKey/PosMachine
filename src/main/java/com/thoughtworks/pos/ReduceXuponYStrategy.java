@@ -11,12 +11,11 @@ public class ReduceXUponYStrategy implements PromotionStrategy {
 
     @Override
     public CartItem apply(CartItem cartItem) {
-        Integer quantity = cartItem.getQuantity();
-        double originSubtotal = cartItem.getPromotionPrice() * quantity;
-        Rule<Integer, Integer> rule = reduceRuleMap.get(cartItem.getItem().getBarcode());
+        double originSubtotal = cartItem.subtotal();
+        Rule<Integer, Integer> rule = reduceRuleMap.get(cartItem.getBarcode());
         double discountTimes = ((int)originSubtotal) / rule.lowerBound;
-        double currentPromotionPrice = (originSubtotal - discountTimes * rule.discount) / quantity;
-        cartItem.setPromotionPrice(currentPromotionPrice);
+        double currentPromotionPrice = (originSubtotal - discountTimes * rule.discount) / cartItem.getQuantity();
+        cartItem.setCurrentPrice(currentPromotionPrice);
         return cartItem;
     }
 

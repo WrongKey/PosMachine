@@ -10,9 +10,9 @@ public class ShoppingCartParser extends Parser<CartItem> {
     @Override
     protected CartItem parseLine(String line) {
         String[] splitLine = line.split("-");
-        Item item = Item.createItemWithoutPrice(splitLine[0]);
+        String barcode = splitLine[0];
         int quantity = Integer.parseInt(splitLine[1]);
-        return new CartItem(item, quantity);
+        return new CartItem(barcode, quantity);
     }
 
     @Override

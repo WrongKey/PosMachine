@@ -11,9 +11,9 @@ public class DiscountStrategy implements PromotionStrategy {
 
     @Override
     public CartItem apply(CartItem cartItem) {
-        final double originPrice = cartItem.getItem().getPrice();
-        final String barcode = cartItem.getItem().getBarcode();
-        cartItem.setPromotionPrice(originPrice * itemDiscountMap.get(barcode));
+        final double currentPrice = cartItem.getCurrentPrice();
+        final String barcode = cartItem.getBarcode();
+        cartItem.setCurrentPrice(currentPrice * itemDiscountMap.get(barcode));
         return cartItem;
     }
 }

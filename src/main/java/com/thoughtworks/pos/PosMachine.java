@@ -17,10 +17,9 @@ public final class PosMachine {
     public double calculate(List<CartItem> cartItems) {
         double total = 0;
         for (CartItem cartItem : cartItems) {
-            String barcode = cartItem.getItem().getBarcode();
-            cartItem.initPrice(queryItemPrice(barcode));
-            cartItem.applyPromotions(getAvailablePromotions(barcode));
-            total += cartItem.getQuantity() * cartItem.getPromotionPrice();
+            cartItem.setCurrentPrice(queryItemPrice(cartItem.getBarcode()));
+            cartItem.applyPromotions(getAvailablePromotions(cartItem.getBarcode()));
+            total += cartItem.subtotal();
         }
         return total;
     }
