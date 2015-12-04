@@ -1,4 +1,4 @@
-package com.thoughtworks.pos;
+package com.thoughtworks.pos.domain;
 
 public final class Item {
     private final String barcode;

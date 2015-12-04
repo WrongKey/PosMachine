@@ -1,5 +1,7 @@
 package com.thoughtworks.pos;
 
+import com.thoughtworks.pos.domain.CartItem;
+import com.thoughtworks.pos.domain.Item;
 import com.thoughtworks.pos.strategy.PromotionStrategy;
 
 import java.util.*;

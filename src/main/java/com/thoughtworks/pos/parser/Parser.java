@@ -1,4 +1,4 @@
-package com.thoughtworks.pos;
+package com.thoughtworks.pos.parser;
 
 import java.util.ArrayList;
 import java.util.List;

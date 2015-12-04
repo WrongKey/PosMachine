@@ -1,4 +1,4 @@
-package com.thoughtworks.pos;
+package com.thoughtworks.pos.domain;
 
 public final class CartItem {
     private final String barcode;

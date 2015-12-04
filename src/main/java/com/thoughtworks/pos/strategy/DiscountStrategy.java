@@ -1,6 +1,6 @@
 package com.thoughtworks.pos.strategy;
 
-import com.thoughtworks.pos.CartItem;
+import com.thoughtworks.pos.domain.CartItem;
 
 public class DiscountStrategy implements PromotionStrategy {
     private final Integer discount;

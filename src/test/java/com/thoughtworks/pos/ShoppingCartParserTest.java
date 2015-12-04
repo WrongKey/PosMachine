@@ -1,5 +1,7 @@
 package com.thoughtworks.pos;
 
+import com.thoughtworks.pos.domain.CartItem;
+import com.thoughtworks.pos.parser.ShoppingCartParser;
 import org.junit.Before;
 import org.junit.Test;
 

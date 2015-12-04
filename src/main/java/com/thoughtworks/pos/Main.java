@@ -1,5 +1,10 @@
 package com.thoughtworks.pos;
 
+import com.thoughtworks.pos.domain.CartItem;
+import com.thoughtworks.pos.domain.Item;
+import com.thoughtworks.pos.parser.ItemParser;
+import com.thoughtworks.pos.parser.ShoppingCartParser;
+
 import java.util.List;
 
 public class Main {

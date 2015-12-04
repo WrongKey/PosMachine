@@ -1,7 +1,7 @@
 package com.thoughtworks.pos.strategy;
 
 
-import com.thoughtworks.pos.CartItem;
+import com.thoughtworks.pos.domain.CartItem;
 
 public class ReduceXUponYStrategy implements PromotionStrategy {
     private final Rule<Integer, Integer> reduceRule;

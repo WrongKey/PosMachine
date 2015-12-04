@@ -1,4 +1,6 @@
-package com.thoughtworks.pos;
+package com.thoughtworks.pos.parser;
+
+import com.thoughtworks.pos.domain.CartItem;
 
 import java.util.regex.Pattern;
 
