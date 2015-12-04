@@ -8,12 +8,12 @@ public final class PosMachine {
     private final Map<String, PromotionStrategy> allPromotions;
     private final List<Item> allItems;
 
-    public PosMachine(List<Item> allItems, Map<String, PromotionStrategy> allPromotions) {
+    public PosMachine(final List<Item> allItems, final Map<String, PromotionStrategy> allPromotions) {
         this.allItems = allItems;
         this.allPromotions = allPromotions;
     }
 
-    public double calculate(List<CartItem> cartItems) {
+    public double calculate(final List<CartItem> cartItems) {
         double total = 0;
         for (CartItem cartItem : cartItems) {
             total +=  calculateSubtotal(cartItem);
@@ -21,7 +21,7 @@ public final class PosMachine {
         return total;
     }
 
-    private double calculateSubtotal(CartItem cartItem) {
+    private double calculateSubtotal(final CartItem cartItem) {
         String barcode = cartItem.getBarcode();
         PromotionStrategy promotionStrategy = getAvailablePromotions(barcode);
         double originPrice = queryItemPrice(barcode);
@@ -29,7 +29,7 @@ public final class PosMachine {
         return cartItem.getQuantity() * currentPrice;
     }
 
-    private double queryItemPrice(String barcode) {
+    private double queryItemPrice(final String barcode) {
         for (Item item : allItems) {
             if (item.getBarcode().equals(barcode)){
                 return item.getPrice();
@@ -39,7 +39,7 @@ public final class PosMachine {
         throw new IllegalArgumentException("unknown item");
     }
 
-    private PromotionStrategy getAvailablePromotions(String barcode) {
+    private PromotionStrategy getAvailablePromotions(final String barcode) {
         return allPromotions.get(barcode);
     }
 }

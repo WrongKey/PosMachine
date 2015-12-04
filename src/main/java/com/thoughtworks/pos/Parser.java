@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public abstract class Parser<T> {
-    public List<T> parse(List<String> input) {
+    public List<T> parse(final List<String> input) {
         List<T> list = new ArrayList<>();
         for (String line : input) {
             validateInput(line);
@@ -14,13 +14,13 @@ public abstract class Parser<T> {
         return list;
     }
 
-    private void validateInput(String line) {
+    private void validateInput(final String line) {
         if (!getPattern().matcher(line).matches()) {
             throw new IllegalArgumentException("invalid input format");
         }
     }
 
-    protected abstract T parseLine(String line);
+    protected abstract T parseLine(final String line);
 
     protected abstract Pattern getPattern() ;
 

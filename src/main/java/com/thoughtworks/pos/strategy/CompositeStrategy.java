@@ -12,7 +12,7 @@ public class CompositeStrategy implements PromotionStrategy {
     }
 
     @Override
-    public double apply(CartItem cartItem, double price) {
+    public double apply(final CartItem cartItem, final double price) {
         double currentPrice = price;
         for (PromotionStrategy promotionStrategy : promotionStrategies) {
             currentPrice = promotionStrategy.apply(cartItem, currentPrice);

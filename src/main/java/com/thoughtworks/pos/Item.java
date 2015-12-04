@@ -4,7 +4,7 @@ public final class Item {
     private final String barcode;
     private final double price;
 
-    public Item(String barcode, double price) {
+    public Item(final String barcode, final double price) {
         this.barcode = barcode;
         this.price = price;
     }

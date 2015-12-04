@@ -11,7 +11,7 @@ public class ReduceXUponYStrategy implements PromotionStrategy {
     }
 
     @Override
-    public double apply(CartItem cartItem, double price) {
+    public double apply(final CartItem cartItem, final double price) {
         double originSubtotal = cartItem.getQuantity() * price;
         int discountTimes = (int) originSubtotal / this.reduceRule.lowerBound;
         return (originSubtotal - discountTimes * this.reduceRule.discount) / cartItem.getQuantity();
@@ -21,7 +21,7 @@ public class ReduceXUponYStrategy implements PromotionStrategy {
         private final L lowerBound;
         private final R discount;
 
-        public Rule(L lowerBound, R discount) {
+        public Rule(final L lowerBound, final R discount) {
             this.lowerBound = lowerBound;
             this.discount = discount;
         }

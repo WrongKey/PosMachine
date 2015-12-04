@@ -8,7 +8,7 @@ public class ShoppingCartParser extends Parser<CartItem> {
     private static final Pattern PATTERN = compile("^(\\w+)-(\\d+)$");
 
     @Override
-    protected CartItem parseLine(String line) {
+    protected CartItem parseLine(final String line) {
         String[] splitLine = line.split("-");
         String barcode = splitLine[0];
         int quantity = Integer.parseInt(splitLine[1]);
