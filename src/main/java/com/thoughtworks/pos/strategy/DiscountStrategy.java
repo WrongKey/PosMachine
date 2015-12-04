@@ -10,15 +10,8 @@ public class DiscountStrategy implements PromotionStrategy {
     }
 
     @Override
-    public CartItem apply(CartItem cartItem) {
-        final double currentPrice = cartItem.getCurrentPrice();
+    public double apply(CartItem cartItem, double price) {
         double discountRatio = discount / 100d;
-        cartItem.setCurrentPrice(currentPrice * discountRatio);
-        return cartItem;
-    }
-
-    @Override
-    public Integer priority() {
-        return 2;
+        return price * discountRatio;
     }
 }

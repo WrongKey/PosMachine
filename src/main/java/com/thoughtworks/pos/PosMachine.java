@@ -5,11 +5,10 @@ import com.thoughtworks.pos.strategy.PromotionStrategy;
 import java.util.*;
 
 public final class PosMachine {
-    private static final List<PromotionStrategy> EMPTY = new ArrayList<>();
-    private final Map<String, List<PromotionStrategy>> allPromotions;
+    private final Map<String, PromotionStrategy> allPromotions;
     private final List<Item> allItems;
 
-    public PosMachine(List<Item> allItems, Map<String, List<PromotionStrategy>> allPromotions) {
+    public PosMachine(List<Item> allItems, Map<String, PromotionStrategy> allPromotions) {
         this.allItems = allItems;
         this.allPromotions = allPromotions;
     }
@@ -17,11 +16,17 @@ public final class PosMachine {
     public double calculate(List<CartItem> cartItems) {
         double total = 0;
         for (CartItem cartItem : cartItems) {
-            cartItem.setCurrentPrice(queryItemPrice(cartItem.getBarcode()));
-            cartItem.applyPromotions(getAvailablePromotions(cartItem.getBarcode()));
-            total += cartItem.subtotal();
+            total +=  calculateSubtotal(cartItem);
         }
         return total;
+    }
+
+    private double calculateSubtotal(CartItem cartItem) {
+        String barcode = cartItem.getBarcode();
+        PromotionStrategy promotionStrategy = getAvailablePromotions(barcode);
+        double originPrice = queryItemPrice(barcode);
+        double currentPrice = promotionStrategy.apply(cartItem, originPrice);
+        return cartItem.getQuantity() * currentPrice;
     }
 
     private double queryItemPrice(String barcode) {
@@ -34,8 +39,7 @@ public final class PosMachine {
         throw new IllegalArgumentException("unknown item");
     }
 
-    private List<PromotionStrategy> getAvailablePromotions(String barcode) {
-        List<PromotionStrategy> availablePromotions = allPromotions.get(barcode);
-        return availablePromotions == null ? EMPTY : availablePromotions;
+    private PromotionStrategy getAvailablePromotions(String barcode) {
+        return allPromotions.get(barcode);
     }
 }

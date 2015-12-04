@@ -4,17 +4,10 @@ import com.thoughtworks.pos.CartItem;
 
 public class SecondHalfStrategy implements PromotionStrategy {
     @Override
-    public CartItem apply(CartItem cartItem) {
-        final double currentPrice = cartItem.getCurrentPrice();
+    public double apply(CartItem cartItem, final double price) {
+        final double currentPrice = price;
         final Integer quantity = cartItem.getQuantity();
         final double promotionSubtotal = currentPrice * quantity - quantity / 2 * currentPrice * 0.5;
-        final double promotionPrice = promotionSubtotal / quantity;
-        cartItem.setCurrentPrice(promotionPrice);
-        return cartItem;
-    }
-
-    @Override
-    public Integer priority() {
-        return 1;
+        return promotionSubtotal / quantity;
     }
 }
