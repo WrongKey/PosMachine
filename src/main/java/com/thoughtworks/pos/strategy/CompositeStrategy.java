@@ -14,9 +14,11 @@ public class CompositeStrategy implements PromotionStrategy {
     @Override
     public double apply(final CartItem cartItem, final double price) {
         double currentPrice = price;
+        double subtotal = 0;
         for (PromotionStrategy promotionStrategy : promotionStrategies) {
-            currentPrice = promotionStrategy.apply(cartItem, currentPrice);
+            subtotal = promotionStrategy.apply(cartItem, currentPrice);
+            currentPrice = subtotal / cartItem.getQuantity();
         }
-        return currentPrice;
+        return subtotal;
     }
 }

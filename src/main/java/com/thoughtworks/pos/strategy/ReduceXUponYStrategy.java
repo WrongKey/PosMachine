@@ -14,7 +14,8 @@ public class ReduceXUponYStrategy implements PromotionStrategy {
     public double apply(final CartItem cartItem, final double price) {
         double originSubtotal = cartItem.getQuantity() * price;
         int discountTimes = (int) originSubtotal / this.reduceRule.lowerBound;
-        return (originSubtotal - discountTimes * this.reduceRule.discount) / cartItem.getQuantity();
+        double currentPrice = (originSubtotal - discountTimes * this.reduceRule.discount) / cartItem.getQuantity();
+        return cartItem.getQuantity() * currentPrice;
     }
 
     public static final class Rule<L, R> {

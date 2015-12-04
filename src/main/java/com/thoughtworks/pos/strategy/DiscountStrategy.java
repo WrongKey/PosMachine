@@ -12,6 +12,6 @@ public class DiscountStrategy implements PromotionStrategy {
     @Override
     public double apply(final CartItem cartItem, final double price) {
         double discountRatio = discount / 100d;
-        return price * discountRatio;
+        return price * cartItem.getQuantity() * discountRatio ;
     }
 }
