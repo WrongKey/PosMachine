@@ -23,7 +23,7 @@ public final class PosMachine {
 
     private double calculateSubtotal(final CartItem cartItem) {
         String barcode = cartItem.getBarcode();
-        PromotionStrategy promotionStrategy = getAvailablePromotions(barcode);
+        PromotionStrategy promotionStrategy = getAvailablePromotion(barcode);
         double originPrice = queryItemPrice(barcode);
         return promotionStrategy.apply(cartItem, originPrice);
     }
@@ -38,7 +38,7 @@ public final class PosMachine {
         throw new IllegalArgumentException("unknown item");
     }
 
-    private PromotionStrategy getAvailablePromotions(final String barcode) {
+    private PromotionStrategy getAvailablePromotion(final String barcode) {
         return allPromotions.get(barcode);
     }
 }
