@@ -5,8 +5,7 @@ import com.thoughtworks.pos.domain.CartItem;
 public class SecondHalfStrategy implements PromotionStrategy {
     @Override
     public double apply(final CartItem cartItem, final double price) {
-        final double currentPrice = price;
         final Integer quantity = cartItem.getQuantity();
-        return currentPrice * quantity - quantity / 2 * currentPrice * 0.5;
+        return price * quantity - (quantity / 2) * (price * 0.5);
     }
 }

@@ -27,7 +27,7 @@ public final class PosMachine {
         String barcode = cartItem.getBarcode();
         PromotionStrategy promotionStrategy = getAvailablePromotion(barcode);
         double originPrice = queryItemPrice(barcode);
-        return promotionStrategy.apply(cartItem, originPrice);
+        return  promotionStrategy.apply(cartItem, originPrice);
     }
 
     private double queryItemPrice(final String barcode) {
